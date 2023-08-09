@@ -10,7 +10,7 @@
 
     <name>Tomcat valve request filter</name>
     <description>Tomcat valve that filter request based on regular expressions</description>
-    <url>https://fluentd-jdk-handler.vps.codes/</url>
+    <url>https://github.com/ddelariva/tomcat-valve-request-filter</url>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
