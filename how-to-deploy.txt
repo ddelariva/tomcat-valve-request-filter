@@ -1,0 +1,2 @@
+mvn verify
+mvn -Ptomcat-valve-request-filter.sign -Prelease-sign-artifacts deploy
