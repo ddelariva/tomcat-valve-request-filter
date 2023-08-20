@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<d:tomcat-valve-request
+        xmlns:d="https://dev-esync.excelfore.com/schema/public/xsd/1.0/tomcat-valve-request.xsd"
+        xmlns:x="http://www.w3.org/2001/XMLSchema-instance"
+        connector="200"
+>
+    <d:outcome x:type="d:SendError" code="400"/>
+
+</d:tomcat-valve-request>

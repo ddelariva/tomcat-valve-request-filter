@@ -68,7 +68,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.12.4</version>
+                    <version>3.1.2</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
@@ -173,6 +173,63 @@
                     <detectLinks />
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+
+                <configuration>
+                    <includes>
+                        <include>*/**</include>
+                    </includes>
+                    <argLine>-Djunit.jupiter.extensions.autodetection.enabled=true</argLine>
+                </configuration>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.jupiter</groupId>
+                        <artifactId>junit-jupiter-engine</artifactId>
+                        <version>${version.junit-jupiter}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>${version.jaxb2-plugin}</version>
+                <configuration>
+                    <outputDirectory>${project.basedir}/target/schema-out
+                    </outputDirectory>
+                    <workDirectory>${project.basedir}/target/schema-gen
+                    </workDirectory>
+                    <clearOutputDir>false</clearOutputDir>
+                    <sources>
+                        <source>
+                            ${project.build.sourceDirectory}/org/excelfore/tomcat/valve/acl/cfg
+                        </source>
+                    </sources>
+                    <encoding>UTF-8</encoding>
+                    <transformSchemas>
+                        <transformSchema>
+                            <uri>
+                                https://dev-esync.excelfore.com/schema/public/xsd/1.0/tomcat-valve-request.xsd
+                            </uri>
+                            <toFile>${project.basedir}/target/classes/tomcat-valve-request.xsd</toFile>
+                            <toPrefix>tvr</toPrefix>
+                        </transformSchema>
+                    </transformSchemas>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>schemagen</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
@@ -209,15 +266,39 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.tomcat>9.0.78</version.tomcat>
+        <version.junit-jupiter>5.8.2</version.junit-jupiter>
+        <version.jaxb2-plugin>2.4</version.jaxb2-plugin>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${version.junit-jupiter}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
+
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-catalina</artifactId>
-            <version>9.0.78</version>
+            <version>${version.tomcat}</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
     </dependencies>
 
 </project>

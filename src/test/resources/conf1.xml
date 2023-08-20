@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<d:tomcat-valve-request
+        xmlns:d="https://dev-esync.excelfore.com/schema/public/xsd/1.0/tomcat-valve-request.xsd"
+        xmlns:x="http://www.w3.org/2001/XMLSchema-instance"
+>
+    <d:outcome x:type="d:SendError" code="400"/>
+
+    <d:match pattern="\/good">
+        <d:outcome x:type="d:Continue"/>
+    </d:match>
+
+    <d:match pattern="\/bad">
+        <d:outcome x:type="d:SendError" code="404"/>
+    </d:match>
+
+</d:tomcat-valve-request>
