@@ -4,7 +4,7 @@
 
     <groupId>codes.vps</groupId>
     <artifactId>tomcat-valve-request-filter</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
 
     <name>Tomcat valve request filter</name>
     <description>Tomcat valve that filter request based on regular expressions</description>
