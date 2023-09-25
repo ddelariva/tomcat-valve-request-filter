@@ -1,9 +1,9 @@
 package org.excelfore.tomcat.valve.acl.cfg;
 
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlTransient;
 import org.apache.catalina.connector.Request;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlTransient;
 import java.util.regex.Pattern;
 
 /**

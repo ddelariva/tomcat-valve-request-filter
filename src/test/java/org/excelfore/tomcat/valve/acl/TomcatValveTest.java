@@ -1,23 +1,17 @@
 package org.excelfore.tomcat.valve.acl;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.catalina.connector.Request;
 import org.apache.catalina.connector.Response;
 import org.apache.catalina.core.StandardContext;
-import org.apache.catalina.valves.RemoteAddrValve;
-import org.apache.catalina.valves.RemoteCIDRValve;
-import org.apache.catalina.valves.RemoteHostValve;
-import org.apache.catalina.valves.RequestFilterValve;
 import org.apache.catalina.valves.ValveBase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 

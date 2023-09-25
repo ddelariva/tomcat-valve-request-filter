@@ -1,11 +1,11 @@
 package org.excelfore.tomcat.valve.acl.cfg;
 
+import jakarta.servlet.ServletException;
+import jakarta.xml.bind.annotation.XmlType;
 import org.apache.catalina.connector.Request;
 import org.apache.catalina.connector.Response;
 import org.excelfore.tomcat.valve.acl.TomcatValve;
 
-import javax.servlet.ServletException;
-import javax.xml.bind.annotation.XmlType;
 import java.io.IOException;
 
 /**

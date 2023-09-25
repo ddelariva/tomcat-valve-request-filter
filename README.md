@@ -5,7 +5,9 @@ based on a list of regular expressions.
 
 This project is inspired on the [Tomcat-Valve-Example][1] by Keet Sugathadasa.
 
-The valve has been developed and tested on Tomcat 9.
+Version 0.1 of the valve has been developed and tested on JDK 8 and Tomcat 9.0.
+
+The main branch, and version 1.0 of the valve has been developed and tested on JDK 11 and Tomcat 10.1.
 
 # Integration
 

@@ -14,7 +14,7 @@ import org.excelfore.tomcat.valve.acl.cfg.Behavior;
 import org.excelfore.tomcat.valve.acl.cfg.Influence;
 import org.excelfore.tomcat.valve.acl.cfg.Match;
 
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletException;
 
 /**
  * @author Diego De la Riva
@@ -117,7 +117,7 @@ public class TomcatValve extends ValveBase {
         return log;
     }
 
-    private void influence(Influence influence, Request request, Response response) throws IOException, ServletException {
+    private void influence(Influence influence, Request request, Response response) throws ServletException, IOException {
 
         influence.apply(this, request, response);
 

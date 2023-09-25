@@ -44,6 +44,18 @@
         </repository>
     </distributionManagement>
 
+    <properties>
+        <java.version>11</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.tomcat>10.1.13</version.tomcat>
+        <version.junit-jupiter>5.8.2</version.junit-jupiter>
+        <version.jaxb2-plugin>3.1.0</version.jaxb2-plugin>
+        <version.xml-bind-api>4.0.1</version.xml-bind-api>
+        <version.sun-jaxb-impl>4.0.3</version.sun-jaxb-impl>
+    </properties>
+
     <build>
 
         <pluginManagement>
@@ -139,8 +151,8 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
 
@@ -260,15 +272,6 @@
         </profile>
     </profiles>
 
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.tomcat>9.0.78</version.tomcat>
-        <version.junit-jupiter>5.8.2</version.junit-jupiter>
-        <version.jaxb2-plugin>2.4</version.jaxb2-plugin>
-    </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -296,6 +299,18 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>${version.xml-bind-api}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>${version.sun-jaxb-impl}</version>
+            <scope>runtime</scope>
+        </dependency>
 
     </dependencies>
 
