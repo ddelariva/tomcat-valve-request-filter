@@ -6,8 +6,7 @@ based on a list of regular expressions.
 This project is inspired on the [Tomcat-Valve-Example][1] by Keet Sugathadasa.
 
 Version 0.1 of the valve has been developed and tested on JDK 8 and Tomcat 9.0.
-
-The main branch, and version 1.0 of the valve has been developed and tested on JDK 11 and Tomcat 10.1.
+Version 1.0 of the valve has been developed and tested on JDK 11 and Tomcat 10.1.
 
 # Integration
 
@@ -17,9 +16,11 @@ This code is available at Maven Central
 <dependency>
     <groupId>codes.vps</groupId>
     <artifactId>tomcat-valve-request-filter</artifactId>
-    <version>0.1</version>
+    <version>1.0</version>
 </dependency>
 ```
+
+The valve has no additional runtime dependencies.
 
 # Configuration
 

@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>codes.vps</groupId>
-    <artifactId>tomcat-valve-request-filter</artifactId>
+    <artifactId>tomcat-valve-request-filter-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-    <name>Tomcat valve request filter</name>
-    <description>Tomcat valve that filter request based on regular expressions</description>
+    <name>Tomcat valve request filter parent</name>
     <url>https://github.com/ddelariva/tomcat-valve-request-filter</url>
     <licenses>
         <license>
@@ -17,12 +17,23 @@
         </license>
     </licenses>
 
+    <modules>
+        <module>build</module>
+        <module>impl</module>
+    </modules>
+
     <developers>
         <developer>
             <name>Diego De la Riva</name>
             <email>diego.delariva@excelfore.com</email>
             <organization>Self</organization>
             <organizationUrl>https://github.com/ddelariva</organizationUrl>
+        </developer>
+        <developer>
+            <name>Pawel Veselov</name>
+            <email>pawel.veselov@gmail.com</email>
+            <organization>Self</organization>
+            <organizationUrl>https://github.com/veselov</organizationUrl>
         </developer>
     </developers>
 
@@ -52,8 +63,13 @@
         <version.tomcat>10.1.13</version.tomcat>
         <version.junit-jupiter>5.8.2</version.junit-jupiter>
         <version.jaxb2-plugin>3.1.0</version.jaxb2-plugin>
-        <version.xml-bind-api>4.0.1</version.xml-bind-api>
-        <version.sun-jaxb-impl>4.0.3</version.sun-jaxb-impl>
+        <version.maven-plugin>3.6.0</version.maven-plugin>
+        <version.maven-plugin-api>3.8.5</version.maven-plugin-api>
+        <version.jakarta-jaxb-api>4.0.1</version.jakarta-jaxb-api>
+        <version.java-parser>3.25.5</version.java-parser>
+        <version.lombok>1.18.30</version.lombok>
+        <version.javapoet>1.13.0</version.javapoet>
+        <version.ow2-asm>9.6</version.ow2-asm>
     </properties>
 
     <build>
@@ -204,42 +220,6 @@
                 </dependencies>
             </plugin>
 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>${version.jaxb2-plugin}</version>
-                <configuration>
-                    <outputDirectory>${project.basedir}/target/schema-out
-                    </outputDirectory>
-                    <workDirectory>${project.basedir}/target/schema-gen
-                    </workDirectory>
-                    <clearOutputDir>false</clearOutputDir>
-                    <sources>
-                        <source>
-                            ${project.build.sourceDirectory}/org/excelfore/tomcat/valve/acl/cfg
-                        </source>
-                    </sources>
-                    <encoding>UTF-8</encoding>
-                    <transformSchemas>
-                        <transformSchema>
-                            <uri>
-                                https://dev-esync.excelfore.com/schema/public/xsd/1.0/tomcat-valve-request.xsd
-                            </uri>
-                            <toFile>${project.basedir}/target/classes/tomcat-valve-request.xsd</toFile>
-                            <toPrefix>tvr</toPrefix>
-                        </transformSchema>
-                    </transformSchemas>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>schemagen</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                    </execution>
-                </executions>
-            </plugin>
-
         </plugins>
     </build>
 
@@ -274,6 +254,7 @@
 
     <dependencyManagement>
         <dependencies>
+
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
@@ -281,36 +262,85 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-catalina</artifactId>
+                <version>${version.tomcat}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.maven.plugin-tools</groupId>
+                <artifactId>maven-plugin-annotations</artifactId>
+                <version>${version.maven-plugin}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-plugin-api</artifactId>
+                <version>${version.maven-plugin-api}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-core</artifactId>
+                <version>${version.maven-plugin-api}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>jakarta.xml.bind</groupId>
+                <artifactId>jakarta.xml.bind-api</artifactId>
+                <version>${version.jakarta-jaxb-api}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.javaparser</groupId>
+                <artifactId>javaparser-core</artifactId>
+                <version>${version.java-parser}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.javaparser</groupId>
+                <artifactId>javaparser-symbol-solver-core</artifactId>
+                <version>${version.java-parser}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${version.lombok}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.squareup</groupId>
+                <artifactId>javapoet</artifactId>
+                <version>${version.javapoet}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.ow2.asm</groupId>
+                <artifactId>asm</artifactId>
+                <version>${version.ow2-asm}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.ow2.asm</groupId>
+                <artifactId>asm-util</artifactId>
+                <version>${version.ow2-asm}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.ow2.asm</groupId>
+                <artifactId>asm-tree</artifactId>
+                <version>${version.ow2-asm}</version>
+            </dependency>
+
         </dependencies>
+
     </dependencyManagement>
 
     <dependencies>
 
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-catalina</artifactId>
-            <version>${version.tomcat}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>${version.xml-bind-api}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>${version.sun-jaxb-impl}</version>
-            <scope>runtime</scope>
-        </dependency>
 
     </dependencies>
 

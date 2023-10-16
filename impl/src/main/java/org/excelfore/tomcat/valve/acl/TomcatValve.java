@@ -1,6 +1,8 @@
 package org.excelfore.tomcat.valve.acl;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -11,6 +13,7 @@ import org.apache.catalina.valves.ValveBase;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.excelfore.tomcat.valve.acl.cfg.Behavior;
+import org.excelfore.tomcat.valve.acl.cfg.BehaviorLoader;
 import org.excelfore.tomcat.valve.acl.cfg.Influence;
 import org.excelfore.tomcat.valve.acl.cfg.Match;
 
@@ -77,7 +80,11 @@ public class TomcatValve extends ValveBase {
         try {
             Path p = Paths.get(config).toAbsolutePath();
             config = p.toString();
-            Behavior b = Configurator.loadConfiguration(p);
+            // Behavior b = Configurator.loadConfiguration(p);
+            Behavior b;
+            try (InputStream is = Files.newInputStream(p)) {
+                b = new BehaviorLoader(is).unmarshal();
+            }
             b.validate();
             return b;
         } catch (Exception e) {

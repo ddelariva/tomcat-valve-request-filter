@@ -26,6 +26,9 @@ public class Behavior extends Influence {
     @XmlAttribute
     protected Integer connector;
 
+    // @XmlElement(name = "match")
+    // protected Match match;
+
     /**
      * List of matching rules.
      */

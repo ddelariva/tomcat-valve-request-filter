@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>codes.vps</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <artifactId>tomcat-valve-request-filter-parent</artifactId>
+    </parent>
+
+    <artifactId>tomcat-valve-request-filter</artifactId>
+
+    <name>Tomcat valve request filter</name>
+    <description>Tomcat valve that filter request based on regular expressions</description>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>${version.jaxb2-plugin}</version>
+                <configuration>
+                    <outputDirectory>${project.basedir}/target/schema-out
+                    </outputDirectory>
+                    <workDirectory>${project.basedir}/target/schema-gen
+                    </workDirectory>
+                    <clearOutputDir>false</clearOutputDir>
+                    <sources>
+                        <source>
+                            ${project.build.sourceDirectory}/org/excelfore/tomcat/valve/acl/cfg
+                        </source>
+                    </sources>
+                    <encoding>UTF-8</encoding>
+                    <transformSchemas>
+                        <transformSchema>
+                            <uri>
+                                https://dev-esync.excelfore.com/schema/public/xsd/1.0/tomcat-valve-request.xsd
+                            </uri>
+                            <toFile>${project.basedir}/target/classes/tomcat-valve-request.xsd</toFile>
+                            <toPrefix>tvr</toPrefix>
+                        </transformSchema>
+                    </transformSchemas>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>schemagen</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>tomcat-valve-request-filter-maven-plugin</artifactId>
+                <version>${project.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-jaxb</id>
+                        <goals>
+                            <goal>generate-jaxb</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>strip-jaxb</id>
+                        <goals>
+                            <goal>strip-jaxb</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <scope>provided</scope> <!-- we will strip any annotations during the build process -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>
