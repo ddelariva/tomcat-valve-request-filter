@@ -8,6 +8,7 @@
     <packaging>pom</packaging>
 
     <name>Tomcat valve request filter parent</name>
+    <description>Parent project for the tomcat valve request filter</description>
     <url>https://github.com/ddelariva/tomcat-valve-request-filter</url>
     <licenses>
         <license>

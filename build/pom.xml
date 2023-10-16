@@ -8,6 +8,8 @@
         <artifactId>tomcat-valve-request-filter-parent</artifactId>
     </parent>
 
+    <name>Tomcat valve request filter build plugin</name>
+    <description>Build plugin for the tomcat request filter, to support custom JAXB implementation</description>
     <artifactId>tomcat-valve-request-filter-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
 
