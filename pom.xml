@@ -4,7 +4,7 @@
 
     <groupId>codes.vps</groupId>
     <artifactId>tomcat-valve-request-filter-parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>pom</packaging>
 
     <name>Tomcat valve request filter parent</name>
@@ -42,7 +42,7 @@
         <url>https://github.com/ddelariva/tomcat-valve-request-filter</url>
         <connection>scm:git:https://github.com/ddelariva/tomcat-valve-request-filter.git</connection>
         <developerConnection>scm:git:git@github.com:ddelariva/tomcat-valve-request-filter.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v1.0</tag>
     </scm>
 
     <distributionManagement>

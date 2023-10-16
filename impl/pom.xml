@@ -4,7 +4,7 @@
 
     <parent>
         <groupId>codes.vps</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
         <artifactId>tomcat-valve-request-filter-parent</artifactId>
     </parent>
 
